@@ -35,6 +35,7 @@ jobs:
       - name: Download templates
         run: |
           wget -q https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          unzip Godot_v${GODOT_VERSION}-stable_export_templates.tpz
           mkdir -v -p ~/.godot/templates
           mv templates ~/.godot/templates
       - name: Web Build
