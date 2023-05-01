@@ -21,13 +21,17 @@ jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:3.4.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           lfs: true
+      - name: Setup Godot
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 godot
+          chmod +x godot
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -35,7 +39,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          ./godot -v --path . --no-window --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
