@@ -3,7 +3,7 @@
 name: CI
 
 env:
-  GODOT_VERSION: 3.3.3
+  GODOT_VERSION: 4.0.2
   
 # Controls when the workflow will run
 on:
