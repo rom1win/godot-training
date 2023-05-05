@@ -41,7 +41,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          ./godot -v --path . --no-window --rendering-driver opengl3 --export "HTML5" ./build/web/index.html
+          ./godot -v --path . --no-window --export-release "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
